@@ -1,6 +1,8 @@
 ### Migrations
 ```bash
 cd ./RunningApp/
-dotnet ef migrations add InitIdentityDb --context AuthDbContext
+Dotnet ef migrations add init --context ApplicationDbContext
+Dotnet ef database update --context ApplicationDbContext
+dotnet ef migrations add InitialCreate --context AuthDbContext
 dotnet ef database update --context AuthDbContext     
 ```
