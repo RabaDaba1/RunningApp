@@ -45,3 +45,15 @@ body {
 .login-logout-card .card-body {
   padding: 10px 20px;
 }
+
+.custom-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.custom-form {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    margin-top: 2rem;
+}

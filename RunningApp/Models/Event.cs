@@ -7,6 +7,8 @@
         public string Location { get; set; } = string.Empty;
         public string Date { get; set; } = string.Empty;
         public string Distance { get; set; } = string.Empty;
-        public ICollection<Result> Results { get; set; }
+        
+        public string OrganizerId { get; set; } = string.Empty;
+        public ICollection<Result>? Results { get; set; }
     }
 }
