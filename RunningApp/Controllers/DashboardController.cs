@@ -16,13 +16,18 @@ namespace RunningApp.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string athleteName, string eventName)
+        public async Task<IActionResult> Index(string athleteFirstName, string athleteLastName, string eventName)
         {
             var query = _context.Results.Include(r => r.Athlete).Include(r => r.Event).AsQueryable();;
 
-            if (!string.IsNullOrEmpty(athleteName))
+            if (!string.IsNullOrEmpty(athleteFirstName))
             {
-                query = query.Where(r => r.Athlete.Name.Contains(athleteName));
+                query = query.Where(r => r.Athlete.FirstName.Contains(athleteFirstName));
+            }
+            
+            if (!string.IsNullOrEmpty(athleteLastName))
+            {
+                query = query.Where(r => r.Athlete.LastName.Contains(athleteLastName));
             }
 
             if (!string.IsNullOrEmpty(eventName))

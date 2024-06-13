@@ -42,11 +42,11 @@ namespace RunningApp.Data
                 new Event { Date = "09.07.2021", Distance = "5 km", Id = 4, Location = "Warszawa", Name = "Zabawna Piątka"}
                 );
             modelBuilder.Entity<Athlete>().HasData(
-                new Athlete { Id = 1, Name = "Arek", DateOfBirth = new DateTime(1990, 1, 1) },
-                new Athlete { Id = 2, Name = "Kiptum", DateOfBirth = new DateTime(1992, 1, 1) },
-                new Athlete { Id = 3, Name = "Maciek", DateOfBirth = new DateTime(1994, 1, 1) },
-                new Athlete { Id = 4, Name = "Kacper", DateOfBirth = new DateTime(1996, 1, 1) },
-                new Athlete { Id = 5, Name = "Przemek", DateOfBirth = new DateTime(1998, 1, 1) }
+                new Athlete { Id = 1, FirstName = "Arek", LastName = "Kowalski",  DateOfBirth = new DateTime(1990, 1, 1) },
+                new Athlete { Id = 2, FirstName = "Kiptum", LastName = "Kowalski",  DateOfBirth = new DateTime(1992, 1, 1) },
+                new Athlete { Id = 3, FirstName = "Maciek", LastName = "Kowalski",  DateOfBirth = new DateTime(1994, 1, 1) },
+                new Athlete { Id = 4, FirstName = "Kacper", LastName = "Kowalski",  DateOfBirth = new DateTime(1996, 1, 1) },
+                new Athlete { Id = 5, FirstName = "Przemek", LastName = "Kowalski",  DateOfBirth = new DateTime(1998, 1, 1) }
             );
             modelBuilder.Entity<Result>().HasData(
                 new Result { Id = 1, AthleteId = 1, EventId = 1, Time = new TimeSpan(0, 25, 30) },

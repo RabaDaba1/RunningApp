@@ -10,8 +10,12 @@ ViewData["Title"] = "Dashboard";
 
 <form asp-controller="Dashboard" asp-action="Index" method="get">
     <div class="form-group">
-        <label for="athleteName">Athlete Name:</label>
-        <input type="text" id="athleteName" name="athleteName" class="form-control" />
+        <label for="athleteFistName">Athlete Fist Name:</label>
+        <input type="text" id="athleteFistName" name="athleteFistName" class="form-control" />
+    </div>  
+    <div class="form-group">
+        <label for="athleteLastName">Athlete Last Name:</label>
+        <input type="text" id="athleteLastName" name="athleteLastName" class="form-control" />
     </div>
     <div class="form-group">
         <label for="eventName">Event Name:</label>
@@ -36,7 +40,7 @@ ViewData["Title"] = "Dashboard";
     {
     <tr>
         <td>@result.Id</td>
-        <td>@(result.Athlete != null ? result.Athlete.Name : "")</td>
+        <td>@(result.Athlete != null ? result.Athlete.FirstName : "") @(result.Athlete != null ? result.Athlete.LastName : "")</td>
         <td>@(result.Event != null ? result.Event.Name : "")</td>
         <td>@result.Time</td>
     </tr>
