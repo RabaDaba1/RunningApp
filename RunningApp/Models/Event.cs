@@ -9,6 +9,6 @@
         public string Distance { get; set; } = string.Empty;
         
         public string OrganizerId { get; set; } = string.Empty;
-        public ICollection<Result>? Results { get; set; }
+        public ICollection<Result> Results { get; set; }
     }
 }

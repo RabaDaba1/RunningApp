@@ -16,13 +16,18 @@ namespace RunningApp.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string userName, string eventName)
+        public async Task<IActionResult> Index(string athleteFirstName, string athleteLastName, string eventName)
         {
             var query = _context.Results.Include(r => r.Athlete).Include(r => r.Event).AsQueryable();;
 
-            if (!string.IsNullOrEmpty(userName))
+            if (!string.IsNullOrEmpty(athleteFirstName))
             {
-                query = query.Where(r => r.Athlete.FirstName.Contains(userName)).Where(r => r.Athlete.LastName.Contains(userName));
+                query = query.Where(r => r.Athlete.FirstName.Contains(athleteFirstName));
+            }
+            
+            if (!string.IsNullOrEmpty(athleteLastName))
+            {
+                query = query.Where(r => r.Athlete.LastName.Contains(athleteLastName));
             }
 
             if (!string.IsNullOrEmpty(eventName))
@@ -34,4 +39,5 @@ namespace RunningApp.Controllers
             return View(results);
         }
     }
+
 }

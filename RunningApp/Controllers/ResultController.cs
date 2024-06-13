@@ -24,10 +24,12 @@ public class ResultController : Controller
     }
     
     public async Task<IActionResult> Index()
-    {
+    {   
         var userId = _userManager.GetUserId(User);
-
+        var user = await _authContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+        
         var results = await _context.Results
+            .Where(r => r.Athlete.FirstName == user.FirstName && r.Athlete.LastName == user.LastName)
             .Include(r => r.Event)
             .ToListAsync();
 
@@ -37,44 +39,39 @@ public class ResultController : Controller
     [HttpPost("CreateResult")]
     public async Task<IActionResult> CreateResult(string userFirstName, string userLastName, string eventName, TimeSpan time)
     {
+        var u = await _authContext.Users.FirstOrDefaultAsync(u => u.FirstName == userFirstName && u.LastName == userLastName);
+        
+        // if (u.Role != "Athlete")
+        // {
+        //     return Unauthorized();
+        // }
+        
         var e = await _context.Events.FirstOrDefaultAsync(e => e.Name == eventName);
-        var userId = _userManager.GetUserId(User);
-       // var user = await _authContext.Users.FirstOrDefaultAsync(u => u.FirstName == userFirstName && u.LastName == userLastName);
+        var a = await _context.Athletes.FirstOrDefaultAsync(a => a.FirstName == userFirstName && a.LastName == userLastName);
         
         if (e == null)
         {
             return BadRequest("Event not found.");
         }
         
-        if (userId == null)
+        if (a == null)
         {
-            return BadRequest("User not found.");
-        }
-     
-        
-        Console.WriteLine(userId);
-        Console.WriteLine(e.Id);
-
-        var athlete = await _context.Athletes
-            .FirstOrDefaultAsync(a => a.FirstName == userFirstName && a.LastName == userLastName);
-
-        if (athlete == null)
-        {
-            // If athlete does not exist, create a new one
-            athlete = new Athlete
-            {  
+            a = new Athlete
+            {
                 FirstName = userFirstName,
                 LastName = userLastName
             };
-        
-            _context.Athletes.Add(athlete);
+            
+            _context.Athletes.Add(a);
+            await _context.SaveChangesAsync();
         }
-
-        // Create the result
+        
+        a = await _context.Athletes.FirstOrDefaultAsync(a => a.FirstName == userFirstName && a.LastName == userLastName);
+        
         var result = new Result
-        {   
+        {
+            AthleteId = a.Id,
             EventId = e.Id,
-            AthleteId = athlete.Id,
             Time = time
         };
         
@@ -84,7 +81,7 @@ public class ResultController : Controller
         }
         
         _context.Results.Add(result);
-       await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
 
         return RedirectToAction("Index", "Event");
     }
