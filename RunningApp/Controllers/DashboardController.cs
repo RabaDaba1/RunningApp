@@ -18,11 +18,11 @@ namespace RunningApp.Controllers
 
         public async Task<IActionResult> Index(string userName, string eventName)
         {
-            var query = _context.Results.Include(r => r.User).Include(r => r.Event).AsQueryable();;
+            var query = _context.Results.Include(r => r.Athlete).Include(r => r.Event).AsQueryable();;
 
             if (!string.IsNullOrEmpty(userName))
             {
-                query = query.Where(r => r.User.FirstName.Contains(userName)).Where(r => r.User.LastName.Contains(userName));
+                query = query.Where(r => r.Athlete.FirstName.Contains(userName)).Where(r => r.Athlete.LastName.Contains(userName));
             }
 
             if (!string.IsNullOrEmpty(eventName))

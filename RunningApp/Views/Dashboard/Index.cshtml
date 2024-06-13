@@ -45,7 +45,7 @@ ViewData["Title"] = "Dashboard";
     {
     <tr>
         <td>@result.Id</td>
-        <td>@(result.User != null ? result.User.FirstName : "") @(result.User != null ? result.User.LastName : "")</td>
+        <td>@(result.Athlete != null ? result.Athlete.FirstName : "") @(result.Athlete != null ? result.Athlete.LastName : "")</td>
         <td>@(result.Event != null ? result.Event.Name : "")</td>
         <td>@result.Time</td>
     </tr>

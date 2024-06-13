@@ -15,6 +15,7 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AuthDbContext>();
 
 builder.Services.AddRazorPages();

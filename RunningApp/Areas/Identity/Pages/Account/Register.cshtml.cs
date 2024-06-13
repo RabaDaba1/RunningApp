@@ -107,6 +107,10 @@ namespace RunningApp.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            
+            [Required]
+            [Display(Name = "Role")]
+            public string Role { get; set; }
         }
 
 
@@ -126,6 +130,7 @@ namespace RunningApp.Areas.Identity.Pages.Account
                 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
+                user.Permission = Input.Role;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

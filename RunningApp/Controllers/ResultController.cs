@@ -28,7 +28,6 @@ public class ResultController : Controller
         var userId = _userManager.GetUserId(User);
 
         var results = await _context.Results
-            .Where(r => r.UserId == userId)
             .Include(r => r.Event)
             .ToListAsync();
 
@@ -39,25 +38,43 @@ public class ResultController : Controller
     public async Task<IActionResult> CreateResult(string userFirstName, string userLastName, string eventName, TimeSpan time)
     {
         var e = await _context.Events.FirstOrDefaultAsync(e => e.Name == eventName);
-        var user = await _authContext.Users.FirstOrDefaultAsync(u => u.FirstName == userFirstName && u.LastName == userLastName);
+        var userId = _userManager.GetUserId(User);
+       // var user = await _authContext.Users.FirstOrDefaultAsync(u => u.FirstName == userFirstName && u.LastName == userLastName);
         
         if (e == null)
         {
             return BadRequest("Event not found.");
         }
         
-        if (user == null)
+        if (userId == null)
         {
             return BadRequest("User not found.");
         }
+     
         
-        Console.WriteLine(user.Id);
+        Console.WriteLine(userId);
         Console.WriteLine(e.Id);
-        
-        var result = new Result
+
+        var athlete = await _context.Athletes
+            .FirstOrDefaultAsync(a => a.FirstName == userFirstName && a.LastName == userLastName);
+
+        if (athlete == null)
         {
-            UserId = user.Id,
+            // If athlete does not exist, create a new one
+            athlete = new Athlete
+            {  
+                FirstName = userFirstName,
+                LastName = userLastName
+            };
+        
+            _context.Athletes.Add(athlete);
+        }
+
+        // Create the result
+        var result = new Result
+        {   
             EventId = e.Id,
+            AthleteId = athlete.Id,
             Time = time
         };
         
@@ -67,7 +84,7 @@ public class ResultController : Controller
         }
         
         _context.Results.Add(result);
-        await _context.SaveChangesAsync();
+       await _context.SaveChangesAsync();
 
         return RedirectToAction("Index", "Event");
     }
