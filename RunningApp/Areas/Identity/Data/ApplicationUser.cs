@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Build.Framework;
+using RunningApp.Models;
 
 namespace RunningApp.Areas.Identity.Data;
 
@@ -18,5 +19,7 @@ public class ApplicationUser : IdentityUser
     [PersonalData]
     [Column(TypeName = "nvarchar(100)")]
     public string LastName { get; set; }
+    
+    public virtual ICollection<Result>? Results { get; set; }
 }
 

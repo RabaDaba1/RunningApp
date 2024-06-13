@@ -1,0 +1,21 @@
+﻿@model IEnumerable<RunningApp.Models.Result>
+
+<h2>Your Results</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Event Name</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var result in Model)
+        {
+            <tr>
+                <td>@result.Event.Name</td>
+                <td>@result.Time</td>
+            </tr>
+        }
+    </tbody>
+</table>
