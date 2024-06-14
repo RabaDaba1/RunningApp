@@ -3,6 +3,7 @@ using RunningApp.Data;
 using RunningApp.Models;
 using Microsoft.AspNetCore.Identity;
 using RunningApp.Areas.Identity.Data;
+using RunningApp.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 builder.Services.AddRazorPages();
 
-
+builder.Services.AddScoped<ValidateApiTokenAttribute>();
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
