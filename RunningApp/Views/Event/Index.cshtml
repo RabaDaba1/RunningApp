@@ -46,12 +46,12 @@
 <h2>Register runner's time</h2>
 <form asp-action="CreateResult" asp-controller="Result" method="post" class="my-form">
     <div class="form-group">
-        <label for="userFirstname">User's first name:</label>
-        <input type="text" id="userFirstname" name="userFirstname" class="form-control" />
+        <label for="athleteFirstName">User's first name:</label>
+        <input type="text" id="athleteFirstName" name="athleteFirstName" class="form-control" />
     </div>
     <div class="form-group">
-        <label for="userLastname">User's last name:</label>
-        <input type="text" id="userLastname" name="userLastname" class="form-control" />
+        <label for="athleteLastName">User's last name:</label>
+        <input type="text" id="athleteLastName" name="athleteLastName" class="form-control" />
     </div>
     <div class="form-group">
         <label for="eventName">Event Name:</label>
@@ -62,4 +62,17 @@
         <input type="time" id="time" name="Time" class="form-control" />
     </div>
     <button type="submit" class="btn btn-primary">Register Time</button>
+</form>
+
+<h2>Upload Results</h2>
+<form asp-action="UploadResults" asp-controller="Result" method="post" enctype="multipart/form-data" class="my-form">
+    <div class="form-group">
+        <label for="eventName">Event Name:</label>
+        <input type="text" id="eventName" name="EventName" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="csvFile">Upload CSV:</label>
+        <input type="file" id="csvFile" name="CsvFile" class="form-control" accept=".csv" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
 </form>
