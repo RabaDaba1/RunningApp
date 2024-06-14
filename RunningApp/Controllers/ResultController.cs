@@ -9,7 +9,7 @@ using RunningApp.Models;
 
 namespace RunningApp.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Runner")]
 public class ResultController : Controller
 {
     private readonly UserManager<ApplicationUser> _userManager;

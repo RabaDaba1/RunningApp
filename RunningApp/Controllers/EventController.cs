@@ -8,7 +8,7 @@ using RunningApp.Models;
 
 namespace RunningApp.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Organizer")]
 public class EventController : Controller
 {
     private readonly ApplicationDbContext _context;

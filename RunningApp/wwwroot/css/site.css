@@ -45,3 +45,23 @@ body {
 .login-logout-card .card-body {
   padding: 10px 20px;
 }
+
+.my-form {
+    margin-bottom: 1.5rem;
+}
+
+.my-form div {
+    margin-bottom: 0.75rem;
+}
+
+.inline-form {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.inline-form .form-group {
+  margin-right: 10px;
+}
