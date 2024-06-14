@@ -46,14 +46,22 @@ body {
   padding: 10px 20px;
 }
 
-.custom-form .form-group {
-    margin-bottom: 1rem;
+.my-form {
+    margin-bottom: 1.5rem;
 }
 
-.custom-form {
-    margin-bottom: 2rem;
+.my-form div {
+    margin-bottom: 0.75rem;
 }
 
-h2 {
-    margin-top: 2rem;
+.inline-form {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.inline-form .form-group {
+  margin-right: 10px;
 }

@@ -1,7 +1,8 @@
-﻿@model RegisterModel
+﻿@page
+@model RegisterModel
 @{
-ViewData["Title"] = "Register";
-Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+    ViewData["Title"] = "Register";
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
@@ -50,5 +51,5 @@ Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 </form>
 
 @section Scripts {
-<partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
 }
